@@ -67,7 +67,9 @@ namespace CatalogoProdutos.Controllers
         {
             try
             {
+                
                 _repositorio.ProdutoRepositorio.Delete(id);
+                _repositorio.Save();
                 return Ok("Produto removido com sucesso.");
             }
             catch (Exception)

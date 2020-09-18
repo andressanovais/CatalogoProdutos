@@ -7,6 +7,7 @@ namespace CatalogoProdutos.Dominio.ViewModels.ProdutoViewModels
         public string Nome { get; set; }
         public string Marca { get; set; }
         public decimal Preco { get; set; }
+        public int IdCategoria { get; set; }
         public string NomeCategoria { get; set; }
     }
 }

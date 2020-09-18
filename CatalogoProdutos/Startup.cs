@@ -18,7 +18,14 @@ namespace CatalogoProdutos2
         
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc(options => options.EnableEndpointRouting = false);
+            services.AddCors(options =>
+            { 
+                options.AddPolicy("AllowMyOrigin",
+                builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+            });
+
+            services.AddMvc(options => options.EnableEndpointRouting = false)
+                .AddNewtonsoftJson();
             services.AddScoped<CatalogoDataContext, CatalogoDataContext>();
             services.AddScoped<UnitOfWork, UnitOfWork>();
         }
@@ -30,6 +37,7 @@ namespace CatalogoProdutos2
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseCors("AllowMyOrigin");
             app.UseMvc();
         }
     }

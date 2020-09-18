@@ -49,7 +49,15 @@ namespace CatalogoProdutos.Controllers
                 _repositorio.CategoriaRepositorio.Insert(categoria);
                 _repositorio.Save();
 
-                return Ok("Categoria salva com sucesso.");
+                return Ok(new
+                {
+                    Mensagem = "Categoria salva com sucesso.",
+                    Categoria = new ExibirCategoriaViewModel()
+                    {
+                        Id = categoria.Id,
+                        Nome = categoria.Nome
+                    }
+                });
             }
             catch (Exception)
             {
